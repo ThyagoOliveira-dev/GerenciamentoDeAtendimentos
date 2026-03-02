@@ -2,6 +2,7 @@ package com.thyago.gestao_atendimentos.service;
 
 import com.thyago.gestao_atendimentos.dto.UsuarioRequestDTO;
 import com.thyago.gestao_atendimentos.dto.UsuarioResponseDTO;
+import com.thyago.gestao_atendimentos.exception.UsuarioNaoCadastradoException;
 import com.thyago.gestao_atendimentos.map.Mapper;
 import com.thyago.gestao_atendimentos.model.Usuario;
 import com.thyago.gestao_atendimentos.repository.UsuarioRepository;
@@ -13,9 +14,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
     @Autowired
     private Mapper mapper;
+
 
     public UsuarioResponseDTO salvar(UsuarioRequestDTO usuario){
 
@@ -23,5 +24,10 @@ public class UsuarioService {
         Usuario usuarioSalvo = usuarioRepository.save(entidade);
 
         return mapper.toResponse(usuarioSalvo);
+    }
+
+    public Usuario buscar(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new UsuarioNaoCadastradoException("Usuário com ID " + id + " não existe!"));
     }
 }

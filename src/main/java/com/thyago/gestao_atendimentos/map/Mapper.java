@@ -6,6 +6,7 @@ import com.thyago.gestao_atendimentos.model.Usuario;
 
 @org.mapstruct.Mapper (componentModel = "spring")
 public interface Mapper {
+
     Usuario toEntity(UsuarioRequestDTO dto);
     UsuarioResponseDTO toResponse(Usuario entidade);
 }
