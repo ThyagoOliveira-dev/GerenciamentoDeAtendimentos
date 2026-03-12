@@ -1,8 +1,11 @@
 package com.thyago.gestao_atendimentos.dto;
 
+import com.thyago.gestao_atendimentos.model.Perfil;
+import com.thyago.gestao_atendimentos.model.StatusAtendimento;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+
 
 public record UsuarioRequestDTO(
 
@@ -11,11 +14,15 @@ public record UsuarioRequestDTO(
         String nome,
 
         @Email
-        @NotBlank (message = "O campo Email não pode ficar vazio.")
+        @NotBlank(message = "O campo Email não pode ficar vazio.")
         String email,
 
-        @NotBlank (message = "A senha não pode ser vazia.")
-        String senha
+        @NotBlank(message = "A senha não pode ser vazia.")
+        String senha,
+
+        Perfil perfil,
+
+        StatusAtendimento status
 ) {
 
 }

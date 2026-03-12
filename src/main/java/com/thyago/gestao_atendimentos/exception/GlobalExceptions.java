@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -54,4 +52,25 @@ public class GlobalExceptions extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(dto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(EmailJaCadastradoException.class)
+    public ResponseEntity<ObjetoErro> handleEmailDuplicado(EmailJaCadastradoException ex) {
+        ObjetoErro dto = new ObjetoErro();
+        dto.setError(ex.getMessage());
+        dto.setStatus(HttpStatus.CONFLICT.value());
+        dto.setTimestamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(dto, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(PerfilNaoInformadoException.class)
+    public ResponseEntity<ObjetoErro> handlePerfil(PerfilNaoInformadoException ex) {
+        ObjetoErro dto = new ObjetoErro();
+        dto.setError(ex.getMessage());
+        dto.setStatus(HttpStatus.CONFLICT.value());
+        dto.setTimestamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(dto, HttpStatus.CONFLICT);
+    }
+
 }

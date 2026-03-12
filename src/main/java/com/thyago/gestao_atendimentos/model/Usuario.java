@@ -27,6 +27,15 @@ public class Usuario {
     @Column (name = "cli_perfil")
     private Perfil perfil;
 
+    @Column
+    private StatusAtendimento status;
+
+    public StatusAtendimento getStatus() {
+        return status;
+    }
+    public void setStatus(StatusAtendimento status) {
+        this.status = status;
+    }
     public long getId() {
         return id;
     }
@@ -52,8 +61,7 @@ public class Usuario {
         this.email = email;
     }
     public Perfil getPerfil() {
-        return perfil;
-    }
+        return perfil;}
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
