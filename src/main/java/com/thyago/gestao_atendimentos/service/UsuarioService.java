@@ -2,10 +2,9 @@ package com.thyago.gestao_atendimentos.service;
 
 import com.thyago.gestao_atendimentos.dto.UsuarioRequestDTO;
 import com.thyago.gestao_atendimentos.dto.UsuarioResponseDTO;
-import com.thyago.gestao_atendimentos.exception.EmailJaCadastradoException;
-import com.thyago.gestao_atendimentos.exception.PerfilNaoInformadoException;
+import com.thyago.gestao_atendimentos.exception.customizedException.EmailJaCadastradoException;
+import com.thyago.gestao_atendimentos.exception.customizedException.PerfilNaoInformadoException;
 import com.thyago.gestao_atendimentos.map.Mapper;
-import com.thyago.gestao_atendimentos.model.Perfil;
 import com.thyago.gestao_atendimentos.model.StatusAtendimento;
 import com.thyago.gestao_atendimentos.model.Usuario;
 import com.thyago.gestao_atendimentos.repository.UsuarioRepository;

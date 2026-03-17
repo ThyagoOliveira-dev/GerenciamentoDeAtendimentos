@@ -1,5 +1,9 @@
 package com.thyago.gestao_atendimentos.exception;
 
+import com.thyago.gestao_atendimentos.exception.customizedException.EmailJaCadastradoException;
+import com.thyago.gestao_atendimentos.exception.customizedException.PerfilNaoInformadoException;
+import com.thyago.gestao_atendimentos.exception.customizedException.UsuarioNaoCadastradoException;
+import com.thyago.gestao_atendimentos.exception.customizedException.UsuarioNaoEncontradoException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -73,4 +77,13 @@ public class GlobalExceptions extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(dto, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(UsuarioNaoEncontradoException.class)
+    public ResponseEntity<ObjetoErro> handleUsuario(UsuarioNaoEncontradoException ex){
+        ObjetoErro dto = new ObjetoErro();
+        dto.setError(ex.getMessage());
+        dto.setStatus(HttpStatus.CONFLICT.value());
+        dto.setTimestamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(dto, HttpStatus.CONFLICT);
+    }
 }

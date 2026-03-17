@@ -21,7 +21,7 @@ public class UsuarioController {
     @Autowired
     private Mapper mapper;
 
-    @PostMapping
+    @PostMapping("/salvar")
     public ResponseEntity<UsuarioResponseDTO> salvar(@RequestBody @Valid UsuarioRequestDTO dto) {
 
         UsuarioResponseDTO resultado = usuarioService.salvar(dto);
@@ -29,7 +29,7 @@ public class UsuarioController {
         return ResponseEntity.status(201).body(resultado);
     }
 
-    @GetMapping
+    @GetMapping("/usuarios")
     public List<Usuario> informarTodosUsuarios(){
         return usuarioService.informarTodosUsuarios();
     }
