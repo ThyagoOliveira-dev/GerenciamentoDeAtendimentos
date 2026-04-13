@@ -22,18 +22,17 @@ public class UsuarioService {
     private Mapper mapper;
 
 
-    public UsuarioResponseDTO salvar(UsuarioRequestDTO usuario) {
+    public UsuarioResponseDTO criar(UsuarioRequestDTO usuario) {
         Usuario entidade = mapper.toEntity(usuario);
         if (usuarioRepository.existsByEmail(entidade.getEmail())) {
             throw new EmailJaCadastradoException("Email já cadastrado no nosso sistema!");
         }
         if (entidade.getPerfil() == null) {
-            throw new PerfilNaoInformadoException("Perfil inválido! Escolha ADMIN ou USUARIO.");
+            throw new PerfilNaoInformadoException("Perfil inválido!");
         }
         entidade.setStatus(StatusAtendimento.AGUARDANDO);
-        Usuario usuarioSalvo = usuarioRepository.save(entidade);
-        return mapper.toResponse(usuarioSalvo);
-
+        Usuario novoUsuarioSalvo = usuarioRepository.save(entidade);
+        return mapper.toResponse(novoUsuarioSalvo);
     }
 
     public List<Usuario> informarTodosUsuarios() {
